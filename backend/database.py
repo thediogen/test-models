@@ -12,10 +12,6 @@ from fastapi import Depends
 
 
 class DatabaseManager:
-    '''
-    This is PostgreSQL database manager. Here you can see different classes those are used in this project to `initialize`,
-    `connect`, `close` database and get `database session`.
-    '''
 
     def __init__(self):
         self._sessionmaker: async_sessionmaker | None = None

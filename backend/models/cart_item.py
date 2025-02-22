@@ -15,8 +15,8 @@ class CartItem(Base):
     product_price: Mapped[int] = mapped_column()
     quantity: Mapped[int] = mapped_column()
 
-    product_id: Mapped[uuid.UUID] = mapped_column(ForeignKey('paintings.id'))
+    product_id: Mapped[uuid.UUID] = mapped_column(ForeignKey('productbases.id'))
     cart_id: Mapped[uuid.UUID] = mapped_column(ForeignKey('carts.id'))
 
-    product = relationship('Painting')
+    product = relationship('ProductBase')
     cart: Mapped['Cart'] = relationship('Cart', back_populates='cart_items', lazy='joined')

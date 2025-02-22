@@ -1,19 +1,19 @@
 from enum import Enum as stdEnum
 import uuid
 
-from sqlalchemy import String, Enum as saEnum, JSON, ForeignKey
+from sqlalchemy import String, Enum as saEnum, ARRAY, String, JSON, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
 from backend.models.product_base import ProductBase
 
 
-class Painting(ProductBase):
+class Product(ProductBase):
     id: Mapped[uuid.UUID] = mapped_column(ForeignKey('productbases.id'), primary_key=True)
 
     description: Mapped[str] = mapped_column()
-    available: Mapped[int] = mapped_column()
+    materials: Mapped[list[str]] = mapped_column(ARRAY(String))
     size: Mapped[dict] = mapped_column(JSON)
 
     __mapper_args__ = {
-        'polymorphic_identity': 'painting',
+        'polymorphic_identity': 'product'
     }
